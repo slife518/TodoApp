@@ -6,18 +6,18 @@ import Button from './Button';
 const Todo = ({todo}) => (
   <View style={styles.todoContainer}>
     <Text style={styles.todoText}>{todo.title}</Text>
-    <View style={{flex: 1, justifyContent: 'flex-end'}}>
+    <View style={styles.buttonContainer}>
       <Button
         submitTodo={todo.submitTodo}
-        style={{
-          width: 40,
-          margin: 5,
-          flex: 1,
-          flexDirection: 'row',
-          alignSelf: 'flex-end',
-        }}
+        style={styles.todoButton}
         title="del"
       />
+      <Button
+        submitTodo={todo.submitTodo}
+        style={styles.todoButton}
+        title="done"
+      />
+
     </View>
   </View>
 );
@@ -44,6 +44,18 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginTop: 10,
     marginBottom: 10,
+  },
+  buttonContainer: {
+    flex: 1, 
+    justifyContent: 'flex-end', 
+    flexDirection: 'row'
+  },
+  todoButton: {
+    width: 40,
+    margin: 5,
+    marginBottom: 10,
+    flexDirection: 'row',
+    // alignSelf: 'flex-end',
   },
 });
 export default Todo;
