@@ -15,10 +15,27 @@ class App extends Component {
       type: 'All',
     };
 
-    // 이거 왜 하는 지 이해 안감
+    // ?
     this.submitTodo = this.submitTodo.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
+  deleteTodo(todoIndex) {
+    let {todos} = this.state;
+    todos = todos.filter(todo => todo.todoIndex !== todoIndex);
+    this.setState({todos});
+  }
+
+  toggleComplete(todoIndex) {
+    let {todos} = this.state.todos;
+    todos.forEach(todo => {
+      if (todo.dotoIndex === todoIndex) {
+        todo.complete = !todo.complete;
+      }
+    })
+    this.setState({todos})
+  }
   inputChange(inputValue) {
     console.log('Input value:', inputValue);
     this.setState({inputValue});
