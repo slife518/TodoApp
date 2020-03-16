@@ -1,23 +1,17 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import Button from './Button';
+import {View, Text, StyleSheet} from 'react-native';
+import TodoButton from './TodoButton';
 
-const Todo = ({todo}) => (
+const Todo = ({todo, toggleComplete, deleteTodo}) => (
   <View style={styles.todoContainer}>
     <Text style={styles.todoText}>{todo.title}</Text>
-    <View style={styles.buttonContainer}>
-      <Button
-        submitTodo={todo.submitTodo}
-        style={styles.todoButton}
-        title="del"
+    <View style={styles.buttons}>
+      <TodoButton
+        name="Done"
+        complete={todo.complete}
+        onPress={() => toggleComplete(todo.todoIndex)}
       />
-      <Button
-        submitTodo={todo.submitTodo}
-        style={styles.todoButton}
-        title="done"
-      />
-
+      <TodoButton name="Delete" onPress={() => deleteTodo(todo.todoIndex)} />
     </View>
   </View>
 );
@@ -32,6 +26,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderColor: '#ededed',
     paddingLeft: 14,
+    paddingTop: 7,
+    paddingBottom: 7,
     shadowOpacity: 0.2,
     shadowRadius: 3,
     shadowColor: '#000000',
@@ -40,22 +36,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   todoText: {
-    flex: 3,
     fontSize: 17,
-    marginTop: 10,
-    marginBottom: 10,
   },
-  buttonContainer: {
-    flex: 1, 
-    justifyContent: 'flex-end', 
-    flexDirection: 'row'
-  },
-  todoButton: {
-    width: 40,
-    margin: 5,
-    marginBottom: 10,
+  buttons: {
+    flex: 1,
     flexDirection: 'row',
-    // alignSelf: 'flex-end',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
+
 export default Todo;
